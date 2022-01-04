@@ -18,8 +18,10 @@ namespace ComboSorter
         //todo show all attributes of found combos
 
         SeriesWithCharas currentGame;
-        Boolean isPreparingEditMode = false;
-        Boolean isEditMode;
+
+        GameState gameState = GameState.EditMode;
+        //Boolean isPreparingEditMode = false;
+        //Boolean isEditMode;
 
         int currentRow = 0;
 
@@ -206,7 +208,9 @@ namespace ComboSorter
         private void GetCombosFromDatabase()
         {
             //todo check if this breaks anything???
-            if (isEditMode == true || isPreparingEditMode == true) { return; }
+
+            if (gameState == GameState.EditMode) { return; }
+            //if (isEditMode == true || isPreparingEditMode == true) { return; }
             //label1.Text += "a";
             //return;
             //if (currentGame == default(SeriesWithCharas) || currentChara == "") { return false; }
@@ -548,7 +552,7 @@ namespace ComboSorter
             currentFoundInputs = dataGridView1.CurrentRow.Cells[0].Value.ToString();
             currentFoundTags = dataGridView1.CurrentRow.Cells[3].Value.ToString();
 
-            if (isEditMode)
+            if (gameState == GameState.EditMode)
             {
                 SetAttributesToCurrentSelected();
             }
@@ -609,7 +613,7 @@ namespace ComboSorter
 
         private void maxreps_TextChanged(object sender, EventArgs e)
         {
-            if (!isEditMode) { GetCombosFromDatabase(); return; }
+            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); return; }
 
             con.Open();
                 string sql = $"UPDATE ComboTable SET maxreps = @maxreps"
@@ -647,7 +651,7 @@ namespace ComboSorter
 
         private void damage_TextChanged(object sender, EventArgs e)
         {
-            if (!isEditMode) { GetCombosFromDatabase(); return; }
+            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); return; }
 
             con.Open();
                 string sql = $"UPDATE ComboTable SET damage = @damage"
@@ -695,7 +699,7 @@ namespace ComboSorter
 
         private void meter_TextChanged(object sender, EventArgs e)
         {
-            if (!isEditMode) { GetCombosFromDatabase();  return; }
+            if (gameState == GameState.ViewMode ) { GetCombosFromDatabase();  return; }
 
             con.Open();
                 string sql = $"UPDATE ComboTable SET meter = @meter"
@@ -735,27 +739,18 @@ namespace ComboSorter
 
         private void ToSearchMode()
         {
-            //dataGridView1.Rows.Clear();
-            //GetCombosFromDatabase();
 
-            //foreach (Button butt in SeriesPanel.Controls)
-            //{
-            isEditMode = false;
+            gameState = GameState.ViewMode;
             editmodebutton.BackColor = default(Color);
-            //}
+
 
             searchmodebutton.BackColor = Color.DarkGray;
-            //selectedGame = game;
-            //label1.Text = game.gameName;
-            //label1.Text = game.characterNames[0];
 
-            //currentGame = game;
-            //PopulateCharaButtons(currentGame, charasearch.Text);
         }
 
         private void ToEditMode()
         {
-            isPreparingEditMode = true;
+            gameState = GameState.PreparingEditMode;
 
             if (currentFoundInputs == "") { ShowErrorMessage("Please select combo to edit!"); return; }
 
@@ -773,8 +768,7 @@ namespace ComboSorter
             SetAttributesToCurrentSelected();
 
 
-            isEditMode = true;
-            isPreparingEditMode = false;
+            gameState = GameState.EditMode;
 
         }
 
@@ -811,14 +805,14 @@ namespace ComboSorter
 
         private void SearchOrEdit()
         {
-            if (isEditMode) { UpdateCombo(); }
-            else if (!isEditMode) { GetCombosFromDatabase(); }
+            if (gameState == GameState.EditMode) { UpdateCombo(); }
+            else if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); }
         }
 
         private void newcombobox_TextChanged(object sender, EventArgs e)
         {
             //todo make method for all these
-            if (!isEditMode) { return; }
+            if (gameState == GameState.ViewMode) { return; }
             con.Open();
             string sql = $"UPDATE ComboTable SET inputs = @inputs "
                 + $" WHERE inputs = @oldinputs OR inputs = ''"
@@ -834,6 +828,13 @@ namespace ComboSorter
             }
             con.Close();
 
+        }
+
+        public enum GameState
+        {
+            ViewMode,
+            PreparingEditMode,
+            EditMode
         }
     }
 }
