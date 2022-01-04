@@ -883,8 +883,8 @@
             // 
             this.greaterlessequaldamage.FormattingEnabled = true;
             this.greaterlessequaldamage.Items.AddRange(new object[] {
-            ">",
-            "<",
+            ">=",
+            "<=",
             "="});
             this.greaterlessequaldamage.Location = new System.Drawing.Point(321, 199);
             this.greaterlessequaldamage.Name = "greaterlessequaldamage";
@@ -999,8 +999,8 @@
             // 
             this.greaterlessequalmeter.FormattingEnabled = true;
             this.greaterlessequalmeter.Items.AddRange(new object[] {
-            ">",
-            "<",
+            ">=",
+            "<=",
             "="});
             this.greaterlessequalmeter.Location = new System.Drawing.Point(321, 163);
             this.greaterlessequalmeter.Name = "greaterlessequalmeter";
@@ -1012,8 +1012,8 @@
             // 
             this.greaterlessequalreps.FormattingEnabled = true;
             this.greaterlessequalreps.Items.AddRange(new object[] {
-            ">",
-            "<",
+            ">=",
+            "<=",
             "="});
             this.greaterlessequalreps.Location = new System.Drawing.Point(321, 128);
             this.greaterlessequalreps.Name = "greaterlessequalreps";

@@ -252,15 +252,15 @@ namespace ComboSorter
 
             if (maxreps.Text.ToString() != "")
             {
-                if (greaterlessequalreps.SelectedIndex == 0)
+                if (greaterlessequalreps.Text == ">=")
                 {
-                    searchCommand += $" AND maxreps > {maxreps.Text.ToString()}";
+                    searchCommand += $" AND maxreps >= {maxreps.Text.ToString()}";
                 }
-                else if (greaterlessequalreps.SelectedIndex == 1)
+                else if (greaterlessequalreps.Text == "<=")
                 {
-                    searchCommand += $" AND maxreps < {maxreps.Text.ToString()}";
+                    searchCommand += $" AND maxreps <= {maxreps.Text.ToString()}";
                 }
-                else if (greaterlessequalreps.SelectedIndex == 2)
+                else if (greaterlessequalreps.Text == "=")
                 {
                     searchCommand += $" AND maxreps = {maxreps.Text.ToString()}";
                 }
@@ -268,15 +268,15 @@ namespace ComboSorter
 
             if (meter.Text.ToString() != "")
             {
-                if (greaterlessequalmeter.SelectedIndex == 0)
+                if (greaterlessequalmeter.Text == ">=")
                 {
-                    searchCommand += $" AND meter > {meter.Text.ToString()}";
+                    searchCommand += $" AND meter >= {meter.Text.ToString()}";
                 }
-                else if (greaterlessequalmeter.SelectedIndex == 1)
+                else if (greaterlessequalmeter.Text == "<=")
                 {
                     searchCommand += $" AND meter < {meter.Text.ToString()}";
                 }
-                else if (greaterlessequalmeter.SelectedIndex == 2)
+                else if (greaterlessequalmeter.Text == "=")
                 {
                     searchCommand += $" AND meter = {meter.Text.ToString()}";
                 }
@@ -284,15 +284,15 @@ namespace ComboSorter
 
             if (damage.Text.ToString() != "")
             {
-                if (greaterlessequaldamage.SelectedIndex == 0)
+                if (greaterlessequaldamage.Text == ">=")
                 {
-                    searchCommand += $" AND damage > {damage.Text.ToString()}";
+                    searchCommand += $" AND damage >= {damage.Text.ToString()}";
                 }
-                else if (greaterlessequaldamage.SelectedIndex == 1)
+                else if (greaterlessequaldamage.Text == "<=")
                 {
                     searchCommand += $" AND damage < {damage.Text.ToString()}";
                 }
-                else if (greaterlessequaldamage.SelectedIndex == 2)
+                else if (greaterlessequaldamage.Text == "=")
                 {
                     searchCommand += $" AND damage = {damage.Text.ToString()}";
                 }
