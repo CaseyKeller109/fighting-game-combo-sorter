@@ -30,8 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.SeriesPanel = new System.Windows.Forms.FlowLayoutPanel();
-            this.seriessearch = new System.Windows.Forms.TextBox();
-            this.charasearch = new System.Windows.Forms.TextBox();
+            this.inputGame = new System.Windows.Forms.TextBox();
+            this.inputChara = new System.Windows.Forms.TextBox();
             this.corner = new System.Windows.Forms.RadioButton();
             this.midscreen = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -45,7 +45,7 @@
             this.airtoair = new System.Windows.Forms.RadioButton();
             this.airtoground = new System.Windows.Forms.RadioButton();
             this.label4 = new System.Windows.Forms.Label();
-            this.damage = new System.Windows.Forms.TextBox();
+            this.inputDamage = new System.Windows.Forms.TextBox();
             this.panel3 = new System.Windows.Forms.Panel();
             this.any5 = new System.Windows.Forms.RadioButton();
             this.combo = new System.Windows.Forms.RadioButton();
@@ -63,7 +63,7 @@
             this.midattack = new System.Windows.Forms.RadioButton();
             this.lowattack = new System.Windows.Forms.RadioButton();
             this.label6 = new System.Windows.Forms.Label();
-            this.maxreps = new System.Windows.Forms.TextBox();
+            this.inputReps = new System.Windows.Forms.TextBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.any10 = new System.Windows.Forms.RadioButton();
             this.sideswitch = new System.Windows.Forms.RadioButton();
@@ -74,7 +74,7 @@
             this.any3 = new System.Windows.Forms.RadioButton();
             this.searchbutton = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
-            this.newcombobox = new System.Windows.Forms.TextBox();
+            this.inputCombo = new System.Windows.Forms.TextBox();
             this.addbutton = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
             this.throwyes = new System.Windows.Forms.RadioButton();
@@ -93,33 +93,33 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Inputs = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Reps = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DamageHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tags = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MeterColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.comboSorterDatabaseDataSet = new ComboSorter.ComboSorterDatabaseDataSet();
             this.comboSorterDatabaseDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.CharaPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.inputsearchtext = new System.Windows.Forms.Label();
-            this.inputsearchstart = new System.Windows.Forms.TextBox();
+            this.inputStartsWith = new System.Windows.Forms.TextBox();
             this.greaterlessequaldamage = new System.Windows.Forms.ComboBox();
             this.comboSorterDatabaseDataSetBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.characterSearchText = new System.Windows.Forms.Label();
             this.inputsearchtext2 = new System.Windows.Forms.Label();
-            this.inputsearchend = new System.Windows.Forms.TextBox();
+            this.inputSearchEnd = new System.Windows.Forms.TextBox();
             this.inputsearchtext3 = new System.Windows.Forms.Label();
-            this.inputsearchinclude = new System.Windows.Forms.TextBox();
+            this.inputSearchInclude = new System.Windows.Forms.TextBox();
             this.resetfilter = new System.Windows.Forms.Button();
             this.autofilter = new System.Windows.Forms.Button();
             this.errormessage = new System.Windows.Forms.Label();
             this.greaterlessequalmeter = new System.Windows.Forms.ComboBox();
             this.greaterlessequalreps = new System.Windows.Forms.ComboBox();
-            this.meter = new System.Windows.Forms.TextBox();
+            this.inputMeter = new System.Windows.Forms.TextBox();
             this.searchmodebutton = new System.Windows.Forms.Button();
             this.editmodebutton = new System.Windows.Forms.Button();
+            this.InputsHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RepsHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DamageHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MeterHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TagsHeader = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -145,21 +145,21 @@
             this.SeriesPanel.TabIndex = 1;
             this.SeriesPanel.WrapContents = false;
             // 
-            // seriessearch
+            // inputGame
             // 
-            this.seriessearch.Location = new System.Drawing.Point(123, 19);
-            this.seriessearch.Name = "seriessearch";
-            this.seriessearch.Size = new System.Drawing.Size(119, 20);
-            this.seriessearch.TabIndex = 2;
-            this.seriessearch.TextChanged += new System.EventHandler(this.SeriesSearch_TextChanged);
+            this.inputGame.Location = new System.Drawing.Point(123, 19);
+            this.inputGame.Name = "inputGame";
+            this.inputGame.Size = new System.Drawing.Size(119, 20);
+            this.inputGame.TabIndex = 2;
+            this.inputGame.TextChanged += new System.EventHandler(this.SeriesSearch_TextChanged);
             // 
-            // charasearch
+            // inputChara
             // 
-            this.charasearch.Location = new System.Drawing.Point(123, 67);
-            this.charasearch.Name = "charasearch";
-            this.charasearch.Size = new System.Drawing.Size(119, 20);
-            this.charasearch.TabIndex = 3;
-            this.charasearch.TextChanged += new System.EventHandler(this.charasearch_TextChanged);
+            this.inputChara.Location = new System.Drawing.Point(123, 67);
+            this.inputChara.Name = "inputChara";
+            this.inputChara.Size = new System.Drawing.Size(119, 20);
+            this.inputChara.TabIndex = 3;
+            this.inputChara.TextChanged += new System.EventHandler(this.charasearch_TextChanged);
             // 
             // corner
             // 
@@ -301,14 +301,14 @@
             this.label4.TabIndex = 14;
             this.label4.Text = "Damage";
             // 
-            // damage
+            // inputDamage
             // 
-            this.damage.Location = new System.Drawing.Point(384, 200);
-            this.damage.Name = "damage";
-            this.damage.Size = new System.Drawing.Size(100, 20);
-            this.damage.TabIndex = 13;
-            this.damage.TextChanged += new System.EventHandler(this.damage_TextChanged);
-            this.damage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxreps_KeyPress);
+            this.inputDamage.Location = new System.Drawing.Point(384, 200);
+            this.inputDamage.Name = "inputDamage";
+            this.inputDamage.Size = new System.Drawing.Size(100, 20);
+            this.inputDamage.TabIndex = 13;
+            this.inputDamage.TextChanged += new System.EventHandler(this.damage_TextChanged);
+            this.inputDamage.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxreps_KeyPress);
             // 
             // panel3
             // 
@@ -493,14 +493,14 @@
             this.label6.TabIndex = 21;
             this.label6.Text = "Max Reps";
             // 
-            // maxreps
+            // inputReps
             // 
-            this.maxreps.Location = new System.Drawing.Point(384, 129);
-            this.maxreps.Name = "maxreps";
-            this.maxreps.Size = new System.Drawing.Size(100, 20);
-            this.maxreps.TabIndex = 20;
-            this.maxreps.TextChanged += new System.EventHandler(this.maxreps_TextChanged);
-            this.maxreps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxreps_KeyPress);
+            this.inputReps.Location = new System.Drawing.Point(384, 129);
+            this.inputReps.Name = "inputReps";
+            this.inputReps.Size = new System.Drawing.Size(100, 20);
+            this.inputReps.TabIndex = 20;
+            this.inputReps.TextChanged += new System.EventHandler(this.maxreps_TextChanged);
+            this.inputReps.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.maxreps_KeyPress);
             // 
             // panel6
             // 
@@ -608,14 +608,14 @@
             this.label7.TabIndex = 30;
             this.label7.Text = "New Combo";
             // 
-            // newcombobox
+            // inputCombo
             // 
-            this.newcombobox.BackColor = System.Drawing.SystemColors.Window;
-            this.newcombobox.Location = new System.Drawing.Point(138, 740);
-            this.newcombobox.Name = "newcombobox";
-            this.newcombobox.Size = new System.Drawing.Size(550, 20);
-            this.newcombobox.TabIndex = 29;
-            this.newcombobox.TextChanged += new System.EventHandler(this.newcombobox_TextChanged);
+            this.inputCombo.BackColor = System.Drawing.SystemColors.Window;
+            this.inputCombo.Location = new System.Drawing.Point(138, 740);
+            this.inputCombo.Name = "inputCombo";
+            this.inputCombo.Size = new System.Drawing.Size(550, 20);
+            this.inputCombo.TabIndex = 29;
+            this.inputCombo.TextChanged += new System.EventHandler(this.newcombobox_TextChanged);
             // 
             // addbutton
             // 
@@ -801,46 +801,15 @@
             this.dataGridView1.AllowUserToOrderColumns = true;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Inputs,
-            this.Reps,
+            this.InputsHeader,
+            this.RepsHeader,
             this.DamageHeader,
-            this.Tags,
-            this.MeterColumn});
+            this.MeterHeader,
+            this.TagsHeader});
             this.dataGridView1.Location = new System.Drawing.Point(6, 527);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.Size = new System.Drawing.Size(682, 184);
             this.dataGridView1.TabIndex = 38;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
-            // 
-            // Inputs
-            // 
-            this.Inputs.HeaderText = "Inputs";
-            this.Inputs.Name = "Inputs";
-            this.Inputs.Width = 470;
-            // 
-            // Reps
-            // 
-            this.Reps.HeaderText = "Reps";
-            this.Reps.Name = "Reps";
-            this.Reps.Width = 50;
-            // 
-            // DamageHeader
-            // 
-            this.DamageHeader.HeaderText = "Damage";
-            this.DamageHeader.Name = "DamageHeader";
-            this.DamageHeader.Width = 68;
-            // 
-            // Tags
-            // 
-            this.Tags.HeaderText = "Tags";
-            this.Tags.Name = "Tags";
-            this.Tags.Visible = false;
-            // 
-            // MeterColumn
-            // 
-            this.MeterColumn.HeaderText = "Meter";
-            this.MeterColumn.Name = "MeterColumn";
-            this.MeterColumn.Width = 50;
             // 
             // comboSorterDatabaseDataSet
             // 
@@ -871,13 +840,13 @@
             this.inputsearchtext.TabIndex = 40;
             this.inputsearchtext.Text = "Input: Starts with";
             // 
-            // inputsearchstart
+            // inputStartsWith
             // 
-            this.inputsearchstart.Location = new System.Drawing.Point(356, 227);
-            this.inputsearchstart.Name = "inputsearchstart";
-            this.inputsearchstart.Size = new System.Drawing.Size(109, 20);
-            this.inputsearchstart.TabIndex = 39;
-            this.inputsearchstart.TextChanged += new System.EventHandler(this.inputsearchstart_TextChanged);
+            this.inputStartsWith.Location = new System.Drawing.Point(356, 227);
+            this.inputStartsWith.Name = "inputStartsWith";
+            this.inputStartsWith.Size = new System.Drawing.Size(109, 20);
+            this.inputStartsWith.TabIndex = 39;
+            this.inputStartsWith.TextChanged += new System.EventHandler(this.inputsearchstart_TextChanged);
             // 
             // greaterlessequaldamage
             // 
@@ -917,15 +886,15 @@
             this.label1.TabIndex = 44;
             this.label1.Text = "Game Search";
             // 
-            // label2
+            // characterSearchText
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label2.Location = new System.Drawing.Point(-2, 68);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(119, 17);
-            this.label2.TabIndex = 45;
-            this.label2.Text = "Character Search";
+            this.characterSearchText.AutoSize = true;
+            this.characterSearchText.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.characterSearchText.Location = new System.Drawing.Point(-2, 68);
+            this.characterSearchText.Name = "characterSearchText";
+            this.characterSearchText.Size = new System.Drawing.Size(119, 17);
+            this.characterSearchText.TabIndex = 45;
+            this.characterSearchText.Text = "Character Search";
             // 
             // inputsearchtext2
             // 
@@ -937,13 +906,13 @@
             this.inputsearchtext2.TabIndex = 47;
             this.inputsearchtext2.Text = "Ends with";
             // 
-            // inputsearchend
+            // inputSearchEnd
             // 
-            this.inputsearchend.Location = new System.Drawing.Point(539, 227);
-            this.inputsearchend.Name = "inputsearchend";
-            this.inputsearchend.Size = new System.Drawing.Size(98, 20);
-            this.inputsearchend.TabIndex = 46;
-            this.inputsearchend.TextChanged += new System.EventHandler(this.inputsearchend_TextChanged);
+            this.inputSearchEnd.Location = new System.Drawing.Point(539, 227);
+            this.inputSearchEnd.Name = "inputSearchEnd";
+            this.inputSearchEnd.Size = new System.Drawing.Size(98, 20);
+            this.inputSearchEnd.TabIndex = 46;
+            this.inputSearchEnd.TextChanged += new System.EventHandler(this.inputsearchend_TextChanged);
             // 
             // inputsearchtext3
             // 
@@ -956,13 +925,13 @@
             this.inputsearchtext3.Text = "Includes";
             this.inputsearchtext3.Click += new System.EventHandler(this.label13_Click);
             // 
-            // inputsearchinclude
+            // inputSearchInclude
             // 
-            this.inputsearchinclude.Location = new System.Drawing.Point(708, 229);
-            this.inputsearchinclude.Name = "inputsearchinclude";
-            this.inputsearchinclude.Size = new System.Drawing.Size(82, 20);
-            this.inputsearchinclude.TabIndex = 48;
-            this.inputsearchinclude.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.inputSearchInclude.Location = new System.Drawing.Point(708, 229);
+            this.inputSearchInclude.Name = "inputSearchInclude";
+            this.inputSearchInclude.Size = new System.Drawing.Size(82, 20);
+            this.inputSearchInclude.TabIndex = 48;
+            this.inputSearchInclude.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // resetfilter
             // 
@@ -1021,14 +990,14 @@
             this.greaterlessequalreps.TabIndex = 54;
             this.greaterlessequalreps.SelectedIndexChanged += new System.EventHandler(this.greaterlessequalreps_SelectedIndexChanged);
             // 
-            // meter
+            // inputMeter
             // 
-            this.meter.Location = new System.Drawing.Point(384, 163);
-            this.meter.Name = "meter";
-            this.meter.Size = new System.Drawing.Size(100, 20);
-            this.meter.TabIndex = 55;
-            this.meter.TextChanged += new System.EventHandler(this.meter_TextChanged);
-            this.meter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.meter_KeyPress);
+            this.inputMeter.Location = new System.Drawing.Point(384, 163);
+            this.inputMeter.Name = "inputMeter";
+            this.inputMeter.Size = new System.Drawing.Size(100, 20);
+            this.inputMeter.TabIndex = 55;
+            this.inputMeter.TextChanged += new System.EventHandler(this.meter_TextChanged);
+            this.inputMeter.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.meter_KeyPress);
             // 
             // searchmodebutton
             // 
@@ -1050,6 +1019,36 @@
             this.editmodebutton.UseVisualStyleBackColor = true;
             this.editmodebutton.Click += new System.EventHandler(this.editmodebutton_Click);
             // 
+            // InputsHeader
+            // 
+            this.InputsHeader.HeaderText = "Inputs";
+            this.InputsHeader.Name = "InputsHeader";
+            this.InputsHeader.Width = 470;
+            // 
+            // RepsHeader
+            // 
+            this.RepsHeader.HeaderText = "Reps";
+            this.RepsHeader.Name = "RepsHeader";
+            this.RepsHeader.Width = 50;
+            // 
+            // DamageHeader
+            // 
+            this.DamageHeader.HeaderText = "Damage";
+            this.DamageHeader.Name = "DamageHeader";
+            this.DamageHeader.Width = 68;
+            // 
+            // MeterHeader
+            // 
+            this.MeterHeader.HeaderText = "Meter";
+            this.MeterHeader.Name = "MeterHeader";
+            this.MeterHeader.Width = 50;
+            // 
+            // TagsHeader
+            // 
+            this.TagsHeader.HeaderText = "Tags";
+            this.TagsHeader.Name = "TagsHeader";
+            this.TagsHeader.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1057,22 +1056,22 @@
             this.ClientSize = new System.Drawing.Size(800, 768);
             this.Controls.Add(this.editmodebutton);
             this.Controls.Add(this.searchmodebutton);
-            this.Controls.Add(this.meter);
+            this.Controls.Add(this.inputMeter);
             this.Controls.Add(this.greaterlessequalreps);
             this.Controls.Add(this.greaterlessequalmeter);
             this.Controls.Add(this.errormessage);
             this.Controls.Add(this.autofilter);
             this.Controls.Add(this.resetfilter);
             this.Controls.Add(this.inputsearchtext3);
-            this.Controls.Add(this.inputsearchinclude);
+            this.Controls.Add(this.inputSearchInclude);
             this.Controls.Add(this.inputsearchtext2);
-            this.Controls.Add(this.inputsearchend);
-            this.Controls.Add(this.label2);
+            this.Controls.Add(this.inputSearchEnd);
+            this.Controls.Add(this.characterSearchText);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.greaterlessequaldamage);
             this.Controls.Add(this.inputsearchtext);
-            this.Controls.Add(this.inputsearchstart);
+            this.Controls.Add(this.inputStartsWith);
             this.Controls.Add(this.CharaPanel);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label11);
@@ -1084,22 +1083,22 @@
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.addbutton);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.newcombobox);
+            this.Controls.Add(this.inputCombo);
             this.Controls.Add(this.searchbutton);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.maxreps);
+            this.Controls.Add(this.inputReps);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.damage);
+            this.Controls.Add(this.inputDamage);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.charasearch);
-            this.Controls.Add(this.seriessearch);
+            this.Controls.Add(this.inputChara);
+            this.Controls.Add(this.inputGame);
             this.Controls.Add(this.SeriesPanel);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -1134,8 +1133,8 @@
 
         #endregion
         private System.Windows.Forms.FlowLayoutPanel SeriesPanel;
-        private System.Windows.Forms.TextBox seriessearch;
-        private System.Windows.Forms.TextBox charasearch;
+        private System.Windows.Forms.TextBox inputGame;
+        private System.Windows.Forms.TextBox inputChara;
         private System.Windows.Forms.RadioButton corner;
         private System.Windows.Forms.RadioButton midscreen;
         private System.Windows.Forms.Panel panel1;
@@ -1144,7 +1143,7 @@
         private System.Windows.Forms.RadioButton airtoair;
         private System.Windows.Forms.RadioButton airtoground;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox damage;
+        private System.Windows.Forms.TextBox inputDamage;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.RadioButton combo;
         private System.Windows.Forms.RadioButton blockstring;
@@ -1162,7 +1161,7 @@
         private System.Windows.Forms.RadioButton midattack;
         private System.Windows.Forms.RadioButton lowattack;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox maxreps;
+        private System.Windows.Forms.TextBox inputReps;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.RadioButton sideswitch;
         private System.Windows.Forms.RadioButton sameside;
@@ -1178,7 +1177,7 @@
         private System.Windows.Forms.RadioButton any3;
         private System.Windows.Forms.Button searchbutton;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox newcombobox;
+        private System.Windows.Forms.TextBox inputCombo;
         private System.Windows.Forms.Button addbutton;
         private System.Windows.Forms.Panel panel7;
         private System.Windows.Forms.RadioButton throwyes;
@@ -1201,29 +1200,29 @@
         private System.Windows.Forms.BindingSource comboSorterDatabaseDataSetBindingSource;
         private System.Windows.Forms.FlowLayoutPanel CharaPanel;
         private System.Windows.Forms.Label inputsearchtext;
-        private System.Windows.Forms.TextBox inputsearchstart;
+        private System.Windows.Forms.TextBox inputStartsWith;
         private System.Windows.Forms.ComboBox greaterlessequaldamage;
         private System.Windows.Forms.BindingSource comboSorterDatabaseDataSetBindingSource1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label characterSearchText;
         private System.Windows.Forms.Label inputsearchtext2;
-        private System.Windows.Forms.TextBox inputsearchend;
+        private System.Windows.Forms.TextBox inputSearchEnd;
         private System.Windows.Forms.Label inputsearchtext3;
-        private System.Windows.Forms.TextBox inputsearchinclude;
+        private System.Windows.Forms.TextBox inputSearchInclude;
         private System.Windows.Forms.Button resetfilter;
         private System.Windows.Forms.Button autofilter;
         private System.Windows.Forms.Label errormessage;
         private System.Windows.Forms.ComboBox greaterlessequalmeter;
         private System.Windows.Forms.ComboBox greaterlessequalreps;
-        private System.Windows.Forms.TextBox meter;
+        private System.Windows.Forms.TextBox inputMeter;
         private System.Windows.Forms.Button searchmodebutton;
         private System.Windows.Forms.Button editmodebutton;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Inputs;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Reps;
+        private System.Windows.Forms.DataGridViewTextBoxColumn InputsHeader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RepsHeader;
         private System.Windows.Forms.DataGridViewTextBoxColumn DamageHeader;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Tags;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MeterColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MeterHeader;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TagsHeader;
     }
 }
 

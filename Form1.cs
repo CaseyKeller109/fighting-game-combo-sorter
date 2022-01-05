@@ -15,6 +15,7 @@ namespace ComboSorter
 {
     public partial class Form1 : Form
     {
+        //todo improve naming
         //todo show all attributes of found combos
 
         SeriesWithCharas currentGame;
@@ -163,7 +164,7 @@ namespace ComboSorter
             ctrl.BackColor = Color.DarkGray;
 
             currentGame = game;
-            PopulateCharaButtons(currentGame, charasearch.Text);
+            PopulateCharaButtons(currentGame, inputChara.Text);
 
         }
 
@@ -237,64 +238,64 @@ namespace ComboSorter
 
             //todo replace enterlanguagetextbox.Text, etc with filterDictionary[language].textBox?
 
-            if (inputsearchstart.Text != "")
+            if (inputStartsWith.Text != "")
             {
-                searchCommand += $" AND inputs LIKE '{inputsearchstart.Text}%'";
+                searchCommand += $" AND inputs LIKE '{inputStartsWith.Text}%'";
             }
-            if (inputsearchend.Text != "")
+            if (inputSearchEnd.Text != "")
             {
-                searchCommand += $" AND inputs LIKE '%{inputsearchend.Text}'";
+                searchCommand += $" AND inputs LIKE '%{inputSearchEnd.Text}'";
             }
-            if (inputsearchinclude.Text != "")
+            if (inputSearchInclude.Text != "")
             {
-                searchCommand += $" AND inputs LIKE '%{inputsearchinclude.Text}%'";
+                searchCommand += $" AND inputs LIKE '%{inputSearchInclude.Text}%'";
             }
 
-            if (maxreps.Text.ToString() != "")
+            if (inputReps.Text.ToString() != "")
             {
                 if (greaterlessequalreps.Text == ">=")
                 {
-                    searchCommand += $" AND maxreps >= {maxreps.Text.ToString()}";
+                    searchCommand += $" AND maxreps >= {inputReps.Text.ToString()}";
                 }
                 else if (greaterlessequalreps.Text == "<=")
                 {
-                    searchCommand += $" AND maxreps <= {maxreps.Text.ToString()}";
+                    searchCommand += $" AND maxreps <= {inputReps.Text.ToString()}";
                 }
                 else if (greaterlessequalreps.Text == "=")
                 {
-                    searchCommand += $" AND maxreps = {maxreps.Text.ToString()}";
+                    searchCommand += $" AND maxreps = {inputReps.Text.ToString()}";
                 }
             }
 
-            if (meter.Text.ToString() != "")
+            if (inputMeter.Text.ToString() != "")
             {
                 if (greaterlessequalmeter.Text == ">=")
                 {
-                    searchCommand += $" AND meter >= {meter.Text.ToString()}";
+                    searchCommand += $" AND meter >= {inputMeter.Text.ToString()}";
                 }
                 else if (greaterlessequalmeter.Text == "<=")
                 {
-                    searchCommand += $" AND meter < {meter.Text.ToString()}";
+                    searchCommand += $" AND meter < {inputMeter.Text.ToString()}";
                 }
                 else if (greaterlessequalmeter.Text == "=")
                 {
-                    searchCommand += $" AND meter = {meter.Text.ToString()}";
+                    searchCommand += $" AND meter = {inputMeter.Text.ToString()}";
                 }
             }
 
-            if (damage.Text.ToString() != "")
+            if (inputDamage.Text.ToString() != "")
             {
                 if (greaterlessequaldamage.Text == ">=")
                 {
-                    searchCommand += $" AND damage >= {damage.Text.ToString()}";
+                    searchCommand += $" AND damage >= {inputDamage.Text.ToString()}";
                 }
                 else if (greaterlessequaldamage.Text == "<=")
                 {
-                    searchCommand += $" AND damage < {damage.Text.ToString()}";
+                    searchCommand += $" AND damage < {inputDamage.Text.ToString()}";
                 }
                 else if (greaterlessequaldamage.Text == "=")
                 {
-                    searchCommand += $" AND damage = {damage.Text.ToString()}";
+                    searchCommand += $" AND damage = {inputDamage.Text.ToString()}";
                 }
             } 
 
@@ -322,8 +323,14 @@ namespace ComboSorter
                                 reader.GetString(1));
                             label1.Text = reader.GetString(2);
 
-                            dataGridView1.Rows.Add(reader.GetString(3), reader.GetInt32(6).ToString(),
-                                reader.GetInt32(4).ToString(), reader.GetString(7), reader.GetInt32(5).ToString());
+                            string inputsString = reader.GetString(3);
+                            string maxRepsString = reader.GetInt32(6).ToString();
+                            string damageString = reader.GetInt32(4).ToString();
+                            string tagsString = reader.GetString(7);
+                            string meterString = reader.GetInt32(5).ToString();
+
+
+                            dataGridView1.Rows.Add(inputsString, maxRepsString, damageString, meterString, tagsString);
 
                             label1.Text += reader.GetInt32(0);
                         }
@@ -342,7 +349,7 @@ namespace ComboSorter
             else
             {
                 currentFoundInputs = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                currentFoundTags = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+                currentFoundTags = dataGridView1.CurrentRow.Cells[4].Value.ToString();
             }
             label1.Text = currentFoundInputs;
         }
@@ -353,10 +360,10 @@ namespace ComboSorter
             if (currentGame == default(SeriesWithCharas)) { errormessage.Text = "Select Series and Character!"; return; }
             else if (currentChara == "") { errormessage.Text = "Select Character!"; return; }
             else if (GetCurrentTags(false) == false) { errormessage.Text = "Select All Tags!"; return; }
-            else if (newcombobox.Text == "") { errormessage.Text = "Enter Combo!"; return; }
-            else if (maxreps.Text == "") { errormessage.Text = "Enter Max Reps!"; return; }
-            else if (meter.Text == "") { errormessage.Text = "Enter Meter!"; return; }
-            else if (damage.Text == "") { errormessage.Text = "Enter Damage!"; return; }
+            else if (inputCombo.Text == "") { errormessage.Text = "Enter Combo!"; return; }
+            else if (inputReps.Text == "") { errormessage.Text = "Enter Max Reps!"; return; }
+            else if (inputMeter.Text == "") { errormessage.Text = "Enter Meter!"; return; }
+            else if (inputDamage.Text == "") { errormessage.Text = "Enter Damage!"; return; }
             else
 
             {
@@ -367,10 +374,10 @@ namespace ComboSorter
                 {
                     cmd.Parameters.Add("@series", SqlDbType.VarChar).Value = currentGame.gameName;
                     cmd.Parameters.Add("@chara", SqlDbType.VarChar).Value = currentChara;
-                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = newcombobox.Text.ToString();
-                    cmd.Parameters.Add("@damage", SqlDbType.Int).Value = Convert.ToInt32(damage.Text.ToString());
-                    cmd.Parameters.Add("@meter", SqlDbType.Int).Value = Convert.ToInt32(meter.Text.ToString());
-                    cmd.Parameters.Add("@maxreps", SqlDbType.Int).Value = Convert.ToInt32(maxreps.Text.ToString());
+                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = inputCombo.Text.ToString();
+                    cmd.Parameters.Add("@damage", SqlDbType.Int).Value = Convert.ToInt32(inputDamage.Text.ToString());
+                    cmd.Parameters.Add("@meter", SqlDbType.Int).Value = Convert.ToInt32(inputMeter.Text.ToString());
+                    cmd.Parameters.Add("@maxreps", SqlDbType.Int).Value = Convert.ToInt32(inputReps.Text.ToString());
                     cmd.Parameters.Add("@tags", SqlDbType.VarChar).Value = currentTags;
 
                     cmd.CommandType = CommandType.Text;
@@ -391,7 +398,7 @@ namespace ComboSorter
 
         private void UpdateCombo()
         {
-            label1.Text = "updating!!!";
+            label1.Text = "updating...";
 
             GetCurrentTags(false);
 
@@ -411,7 +418,7 @@ namespace ComboSorter
             }
             con.Close();
 
-            dataGridView1.CurrentRow.Cells[3].Value = currentTags;
+            dataGridView1.CurrentRow.Cells[4].Value = currentTags;
 
             currentFoundTags = currentTags;
 
@@ -518,9 +525,9 @@ namespace ComboSorter
             {
                 buttonList[0].Checked = true;
 
-                maxreps.Text = "3";
-                meter.Text = "5";
-                damage.Text = "4";
+                inputReps.Text = "3";
+                inputMeter.Text = "5";
+                inputDamage.Text = "4";
             }
         }
 
@@ -531,9 +538,9 @@ namespace ComboSorter
             {
                 button.Checked = true;
             }
-            maxreps.Text = "";
-            meter.Text = "";
-            damage.Text = "";
+            inputReps.Text = "";
+            inputMeter.Text = "";
+            inputDamage.Text = "";
         }
 
         private void dataGridView1_RowEnter(object sender, DataGridViewCellEventArgs e)
@@ -550,7 +557,7 @@ namespace ComboSorter
             currentRow = dataGridView1.CurrentCell.RowIndex;
 
             currentFoundInputs = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-            currentFoundTags = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            currentFoundTags = dataGridView1.CurrentRow.Cells[4].Value.ToString();
 
             if (gameState == GameState.EditMode)
             {
@@ -575,7 +582,7 @@ namespace ComboSorter
         private void addbutton_Click(object sender, EventArgs e)
         {
             AddComboToDatabase();
-            //GetCombosFromDatabase();
+            GetCombosFromDatabase();
             //damage.Text = "";
             //newcombobox.Text = "";
         }
@@ -593,12 +600,12 @@ namespace ComboSorter
 
         private void SeriesSearch_TextChanged(object sender, EventArgs e)
         {
-            PopulateSeriesButtons(seriessearch.Text);
+            PopulateSeriesButtons(inputGame.Text);
         }
 
         private void charasearch_TextChanged(object sender, EventArgs e)
         {
-            PopulateCharaButtons(currentGame, charasearch.Text);
+            PopulateCharaButtons(currentGame, inputChara.Text);
         }
 
         private void textBox2_TextChanged(object sender, EventArgs e)
@@ -613,21 +620,26 @@ namespace ComboSorter
 
         private void maxreps_TextChanged(object sender, EventArgs e)
         {
-            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); return; }
+            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); }
 
-            con.Open();
+            else if (gameState == GameState.EditMode)
+            {
+                con.Open();
                 string sql = $"UPDATE ComboTable SET maxreps = @maxreps"
                     + $" WHERE inputs = @inputs"
                     + $" AND chara = @chara";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.Add("@maxreps", SqlDbType.Int).Value = dataGridView1.CurrentCell.Value;
+                    cmd.Parameters.Add("@maxreps", SqlDbType.Int).Value = inputReps.Text;
                     cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value.ToString();
                     cmd.Parameters.Add("@chara", SqlDbType.VarChar).Value = currentChara;
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
+
+                dataGridView1.CurrentRow.Cells[1].Value = inputReps.Text;
+            }
         }
 
         private void maxreps_KeyPress(object sender, KeyPressEventArgs e)
@@ -651,21 +663,26 @@ namespace ComboSorter
 
         private void damage_TextChanged(object sender, EventArgs e)
         {
-            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); return; }
+            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); }
 
-            con.Open();
+            else if (gameState == GameState.EditMode)
+            {
+                con.Open();
                 string sql = $"UPDATE ComboTable SET damage = @damage"
                     + $" WHERE inputs = @inputs"
                     + $" AND chara = @chara";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value;
                     cmd.Parameters.Add("@chara", SqlDbType.VarChar).Value = currentChara;
-                    cmd.Parameters.Add("@damage", SqlDbType.Int).Value = dataGridView1.CurrentCell.Value;
+                    cmd.Parameters.Add("@damage", SqlDbType.Int).Value = inputDamage.Text;
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
+
+                dataGridView1.CurrentRow.Cells[2].Value = inputDamage.Text;
+            }
         }
 
         private void inputsearchstart_TextChanged(object sender, EventArgs e)
@@ -699,21 +716,28 @@ namespace ComboSorter
 
         private void meter_TextChanged(object sender, EventArgs e)
         {
-            if (gameState == GameState.ViewMode ) { GetCombosFromDatabase();  return; }
+            if (gameState == GameState.ViewMode) { GetCombosFromDatabase(); }
 
-            con.Open();
+            else if (gameState == GameState.EditMode)
+            {
+                con.Open();
                 string sql = $"UPDATE ComboTable SET meter = @meter"
                     + $" WHERE inputs = @inputs"
                     + $" AND chara = @chara";
                 using (SqlCommand cmd = new SqlCommand(sql, con))
                 {
-                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value;
                     cmd.Parameters.Add("@chara", SqlDbType.VarChar).Value = currentChara;
-                    cmd.Parameters.Add("@meter", SqlDbType.Int).Value = dataGridView1.CurrentCell.Value;
+                    cmd.Parameters.Add("@meter", SqlDbType.Int).Value = inputMeter.Text;
+
                     cmd.CommandType = CommandType.Text;
                     cmd.ExecuteNonQuery();
                 }
                 con.Close();
+
+
+                dataGridView1.CurrentRow.Cells[3].Value = inputMeter.Text;
+            }
         }
 
         private void greaterlessequalreps_SelectedIndexChanged(object sender, EventArgs e)
@@ -763,7 +787,7 @@ namespace ComboSorter
 
 
 
-            currentFoundTags = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            currentFoundTags = dataGridView1.CurrentRow.Cells[4].Value.ToString();
 
             SetAttributesToCurrentSelected();
 
@@ -776,10 +800,12 @@ namespace ComboSorter
         {
             currentTags = currentFoundTags;
 
-            maxreps.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+
+            //maxreps.Text = dataGridView1.CurrentRow.;
+            inputReps.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
             //meter.Text = "aaa";
-            meter.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            damage.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            inputMeter.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            inputDamage.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
 
             foreach (List<RadioButton> radioList in radioListList)
             {
@@ -812,21 +838,28 @@ namespace ComboSorter
         private void newcombobox_TextChanged(object sender, EventArgs e)
         {
             //todo make method for all these
-            if (gameState == GameState.ViewMode) { return; }
-            con.Open();
-            string sql = $"UPDATE ComboTable SET inputs = @inputs "
-                + $" WHERE inputs = @oldinputs OR inputs = ''"
-                + $" AND chara = @chara";
-            using (SqlCommand cmd = new SqlCommand(sql, con))
-            {
-                cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value.ToString();
-                cmd.Parameters.Add("@oldinputs", SqlDbType.VarChar).Value = currentFoundInputs;
-                cmd.Parameters.Add("@chara", SqlDbType.VarChar).Value = currentChara;
+            if (gameState == GameState.ViewMode) { }
 
-                cmd.CommandType = CommandType.Text;
-                cmd.ExecuteNonQuery();
+            else if (gameState == GameState.EditMode)
+            {
+                con.Open();
+                string sql = $"UPDATE ComboTable SET inputs = @inputs "
+                    + $" WHERE inputs = @oldinputs OR inputs = ''"
+                    + $" AND chara = @chara";
+                using (SqlCommand cmd = new SqlCommand(sql, con))
+                {
+                    cmd.Parameters.Add("@inputs", SqlDbType.VarChar).Value = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+                    cmd.Parameters.Add("@oldinputs", SqlDbType.VarChar).Value = currentFoundInputs;
+                    cmd.Parameters.Add("@chara", SqlDbType.VarChar).Value = currentChara;
+
+                    cmd.CommandType = CommandType.Text;
+                    cmd.ExecuteNonQuery();
+                }
+
+                con.Close();
+
+
             }
-            con.Close();
 
         }
 
