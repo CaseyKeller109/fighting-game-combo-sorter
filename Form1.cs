@@ -15,6 +15,7 @@ namespace ComboSorter
 {
     public partial class Form1 : Form
     {
+        //todo allow users to add new games, characters, tags
         //todo improve naming
         //todo show all attributes of found combos
 
